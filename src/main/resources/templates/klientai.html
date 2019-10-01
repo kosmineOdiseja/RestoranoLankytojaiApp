@@ -39,8 +39,8 @@
 
 			params = {
 			
-				fields: [ 'vardas',  'pavarde','flagPoilsines', 'flagPazintines', 'flagViskasIsk', 'flagLaisvPasir' ]
-				, fields_names: [ 'Klientas', 'poilsinė', 'pažintinė', 'viskas<br>įsk.', 'laisv.<br>pasir.' ]
+				fields: [ 'vardas',  'pavarde','vartojaAlkGer', 'alergRie', 'alergPienPro' ]
+				, fields_names: [ 'Klientas', 'vartoja alkoholinius <br> gerimus', 'alergiskas <br> riesutams', 'alergiskas pieno <br> produktams']
 				, url : 'http://localhost:8080/ajax/lst-klientai'
 				, field_data: ''
 				, id_html_saraso: 'klientai'
@@ -50,8 +50,8 @@
 				, title_dialog_form: 'Klientas'
 				, url_save_rec: 'http://localhost:8080/ajax/saugoti-klienta'
 				, url_delete_rec:  'http://localhost:8080/ajax/salinti-klienta'
-				, fields_edit:  [ 'vardas', 'pavarde', 'flagPoilsines', 'flagPazintines', 'flagViskasIsk', 'flagLaisvPasir' ]
-				, fields_ed_types: [ 'text', 'checkbox', 'checkbox', 'checkbox', 'checkbox' ]
+				, fields_edit:  [ 'vardas', 'pavarde', 'vartojaAlkGer', 'alergRie', 'alergPienPro']
+				, fields_ed_types: [ 'text','text', 'checkbox', 'checkbox', 'checkbox',  ]
 				, field_name: 'vardas', 'pavarde'
 				, details_url: [ { url: 'klientas?id=', name: 'plačiau' }, { url: 'pasiulymai?id=', name: 'pasiūlymai' } ] 								
 			}
@@ -60,7 +60,7 @@
 			
 			crud_kategoriju.initEmpty();
 			crud_kategoriju.refreshData();
-			
+
 		});			
 	</script>
 </head>
@@ -73,11 +73,9 @@
 <form action=""><fieldset><label for="pav">Klientas</label>
 <input type="text" name="vardas" id="vardas" value="" class="text ui-widget-content ui-corner-all"><br><br>
 <input type="text" name="pavarde" id="pavarde" value="" class="text ui-widget-content ui-corner-all"><br><br>
-<input  class="ch_lab" type="checkbox" name="flagPoilsines" id="flagPoilsines" value="1"> - <label class="ch_lab" for="flag_poilsines">poilsinė</label><br>
-<input  class="ch_lab" type="checkbox" name="flagPazintines" id="flagPazintines" value="1"> - <label class="ch_lab"  for="flag_pazintines">pažintinė</label><br>
-<input  class="ch_lab" type="checkbox" name="flagViskasIsk" id="flagViskasIsk" value="1"> - <label class="ch_lab"  for="flag_viskas_isk">viskas įskaičiuota</label><br>
-<input  class="ch_lab" type="checkbox" name="flagLaisvPasir" id="flagLaisvPasir" value="1"> - <label class="ch_lab"   for="flag_laisv_pasir">laisvas pasirinkimas</label><br>
-<!-- Allow form submission with keyboard without duplicating the dialog button -->
+<input  class="ch_lab" type="checkbox" name="vartojaAlkGer" id="vartojaAlkGer" value="1"> - <label class="ch_lab" for="vartojaAlkGer">Vartoja alkoholinius gerimus</label><br>
+<input  class="ch_lab" type="checkbox" name="alergRie" id="alergRie" value="1"> - <label class="ch_lab"  for="alergRie">alergiskas riesutams</label><br>
+<input  class="ch_lab" type="checkbox" name="alergPienPro" id="alergPienPro" value="1"> - <label class="ch_lab"  for="alergPienPro">alergiskas pieno produktams</label><br>
 <input type="submit" tabindex="-1" style="position:absolute; top:-1000px"></fieldset><input type="hidden" name="id" id="id_rec" value="0">
 </form>
 </div>

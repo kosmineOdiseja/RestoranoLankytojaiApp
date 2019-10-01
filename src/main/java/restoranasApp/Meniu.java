@@ -5,9 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
+/**
+ * @author user Alius Bosas
+ * data 2019 10 01
+ */
+
 @Entity
 public class Meniu {
 	
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
@@ -16,6 +23,7 @@ public class Meniu {
     private Integer sudYrapien;
     
     
+
 	public Integer getId() {
 		return id;
 	}

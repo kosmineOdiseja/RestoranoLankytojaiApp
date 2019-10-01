@@ -9,15 +9,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+
+/**
+ * @author user Alius Bosas
+ *data 2019 10 01
+ */
 @Controller 
 @RequestMapping(path="/ajax")
 public class AjaxConroller {
 	
+	
+	/**
+	 * autowired controleris klientoInformacijaiRepository
+	 * 
+	 */
 	@Autowired
 	KlientoInformacijaRepository klientoInformacijaRepository;
 	
-	@GetMapping(path="/saugoti-klientai") 
-	public @ResponseBody String saugotiklientai (@RequestParam Integer id 
+	/**
+	 *  autowired controleris meniuRepositorijai
+	 */
+	@Autowired
+	MeniuRepository meniuRepository;
+	
+	/**
+	 * @param id perduodami parametrai
+	 * @param vardas perduodami parametrai
+	 * @param pavarde perduodami parametrai
+	 * @param vartojaAlkGer perduodami parametrai
+	 * @param alergRie perduodami parametrai
+	 * @param alergPienPro perduodami parametrai
+	 * @return grazinama reiksme!
+	 */
+	
+	@GetMapping(path="/saugoti-klienta") 
+	public @ResponseBody String saugotiklienta (@RequestParam Integer id 
 			, @RequestParam String vardas
 			, @RequestParam String pavarde
 			, @RequestParam Integer vartojaAlkGer
@@ -48,6 +75,10 @@ public class AjaxConroller {
 		return res;	
 		
 		}
+	/**
+	 * @param id perduodamas id 
+	 * @return grazinimas
+	 */
 	@GetMapping(path="/salinti-klienta") 
 	public @ResponseBody String salintiKlienta (@RequestParam Integer id 
 			) {
@@ -65,10 +96,80 @@ public class AjaxConroller {
 		return res;
 	}
 	
+	/**
+	 * @return
+	 * grazinamas klientoInformacijaRepository
+	 */
 	@GetMapping(path="/lst-klientai")
 	public @ResponseBody Iterable<KlientoInformacija> getAllKlientai() {
 		// This returns a JSON or XML with the users
 		return klientoInformacijaRepository.findAll();
 	}	
 	
+	/**
+	 * @param id reikalaujam parametro
+	 * @param patiekalas reikalaujam parametro
+	 * @param sudYraiRes reikalaujam parametro
+	 * @param sudYraPien reikalaujam parametro
+	 * @return  grazinam reiksme res
+	 */
+	@GetMapping(path="/saugoti-meniu") 
+	public @ResponseBody String saugotimeniu (@RequestParam Integer id 
+			, @RequestParam String patiekalas
+			, @RequestParam Integer sudYraiRes
+			, @RequestParam Integer sudYraPien	
+			) {
+	
+		String res = "Not done";
+		Meniu n = new Meniu();
+		
+		if (id > 0) {
+			Optional <Meniu> found = meniuRepository.findById( id );
+			
+			if ( found.isPresent() ) {
+				
+				   n = found.get();
+				   n.setId(id);
+				}
+			}
+		n.setPatiekalas(patiekalas);
+		n.setSudYrapien(sudYraiRes);
+		n.setSudYrapien(sudYraPien);
+		meniuRepository.save(n);
+	    res = "Saved";
+	    
+		return res;	
+		
+		}
+	
+	/**
+	 * @param id perduodam parametra 
+	 * @return grazinam res reiksme
+	 */
+	@GetMapping(path="/salinti-meniu") 
+	public @ResponseBody String salintiMeniu (@RequestParam Integer id 
+			) {
+				
+		Optional <Meniu> found = meniuRepository.findById( id );
+		
+		String res = "Not done";
+		
+		if ( found.isPresent() ) {
+			
+		Meniu n = found.get();
+			meniuRepository.deleteById(id);
+			   res = "Deleted";
+		}		
+		return res;
+	}
+	
+	/**
+	 * @return grazinam meniuRepository
+	 */
+	@GetMapping(path="/lst-meniu")
+	public @ResponseBody Iterable<Meniu> getAllMeniu() {
+		// This returns a JSON or XML with the users
+		return meniuRepository.findAll();
+	
+	}
 }

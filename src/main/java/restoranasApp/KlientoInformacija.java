@@ -22,9 +22,9 @@ public class KlientoInformacija {
     private Integer alergRie;	
     private Integer alergPienPro;
     
- //   @JsonIgnoreProperties("klientai")    
- //   @OneToMany(mappedBy = "klientai",cascade = CascadeType.ALL)
- //   private List<KlientaiKeliones> klientaiKeliones;
+  @JsonIgnoreProperties("klientai")    
+  @OneToMany(mappedBy = "klientai",cascade = CascadeType.ALL)
+   private List<KlientaiMeniu> klientaiMeniu;
 
 	public Integer getId() {
 		return id;
@@ -72,16 +72,5 @@ public class KlientoInformacija {
 
 	public void setAlergPienPro(Integer alergPienPro) {
 		this.alergPienPro = alergPienPro;
-	}
-
-	//public List<KlientaiKeliones> getKlientaiKeliones() {
-//		return klientaiKeliones;
-	//}
-
-//	public void setKlientaiKeliones(List<KlientaiKeliones> klientaiKeliones) {
-//		this.klientaiKeliones = klientaiKeliones;
-//	}  
-    
-    
-    
+	}   
 }
