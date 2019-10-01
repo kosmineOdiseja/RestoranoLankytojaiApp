@@ -34,7 +34,4 @@ public class PageController {
         model.addAttribute("lst_menu");    	
         return "meniu";
     }	
-    
-    
-    
 }
